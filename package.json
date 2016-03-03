@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/RyuSLunK/ryuslunk.github.io/issues"
   },
-  "homepage": "https://github.com/RyuSLunK/ryuslunk.github.io#readme"
+  "homepage": "https://github.com/RyuSLunK/ryuslunk.github.io#readme",
+  "devDependencies": {
+    "webpack": "^1.12.14"
+  }
 }
