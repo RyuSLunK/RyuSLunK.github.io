@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Code Ninja's Lair</title>
     <script src="scripts.min.js"></script>
   </head>
   <body ng-app="page">
-    <h1>Work in Progress</h1>
+    <h1>Scott Lackey</h1>
     <p>Daily updates!</p>
-    <main/>
+    <main class="animate-switch-container"
+      ng-switch on="tab">
+
+        <div class="animate-switch" ng-switch-when="clock">
+          <clock />
+        </div>
+        <div class="animate-switch" ng-switch-when="about">
+          <about></about>
+        </div>
+        <div class="animate-switch" ng-switch-when="game">
+          <game></game>
+        </div>
+        <div class="animate-switch" ng-switch-when="home">
+          <home></home>
+        </div>
+        <div class="animate-switch" ng-switch-when="sketchpad">
+          <sketchpad></sketchpad>
+        </div>
+        <div class="animate-switch" ng-switch-when="sandbox">
+          <sandbox></sandbox>
+        </div>
+      </main>
   </body>
 </html>

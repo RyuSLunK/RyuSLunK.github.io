@@ -1,73 +1,85 @@
 var app = angular.module('page',[])
-.directive("main", function(){
+.directive("holder",function(){
   return{
     restrict: 'E',
     replace: true,
-    scope: false,
-    template: '<div></div>',
     compile: function(tElem,tAttrs){
-      tElem.append("<h1>{{clock}}</h1>");
-      tElem.css("cursor","pointer");
       return {
         pre: function(scope, elem, attrs, ctrl){
-          window.pre = scope;
+          elem = angular.element(attrs.item);
         },
         post: function(scope,elem,attrs,ctrl){
-          scope.clock = Date.now();
-            console.log(scope);
-            window.post = scope;
-            window.ctrl = ctrl;
-            elem.bind('mouseover',function(){
 
-            });
-            elem.bind('mouseenter',function(){
-              scope.running && scope.start()
-              scope.running && elem.css("color","blue");
-              !scope.running && elem.css("color","green");
-            });
-            elem.bind('mouseleave',function(){
-                scope.running && scope.slow();
-                scope.running && elem.css("color","black");
-                !scope.running && elem.css("color","red");
-            });
-            elem.bind('click',function(){
-              if(scope.running){
-                scope.running = false;
-                scope.stop();
-                elem.css("color","green");
-              } else {
-                scope.start();
-                elem.css("color","blue");
-                scope.running = true;
-              }
-            });
         }
       }
     },
-    controller: ['$scope','$interval', function($scope,$interval){
-      window.scopetest = $scope;
-      $scope.clock = Date.now();
-      $scope.running = true;
-      $scope.interval = $interval(
-        function(){
-          $scope.clock = Date.now();
+    controller: ['$scope', function($scope){
+
+    }]
+  };
+})
+.directive("main",function(){
+  return{
+    restrict: 'E',
+    replace: false,
+    template: '',
+    compile: function(tElem,tAttrs){
+      tElem.prepend('<button ng-repeat="item in tabList" ng-click="changeTab(item)">{{item}}</button>');
+
+      return {
+        pre: function(scope, elem, attrs, ctrl){
+
         },
-      1000);
-      $scope.stop = function(){
-        $interval.cancel($scope.interval);
+        post: function(scope,elem,attrs,ctrl){
+
+        }
+      }
+    },
+    controller: ['$scope', function($scope){
+      $scope.tab = 'home';
+      $scope.tabList = ["home","about","game","clock","sketchpad","sandbox"];
+      $scope.changeTab = function(tabName){
+        $scope.tab = tabName;
       };
+    }]
+  };
+})
+.directive("home",function(){
+  return{
+    restrict: 'E',
+    replace: false,
+    templateUrl: 'home.html',
+    compile: function(tElem,tAttrs){
+      return {
+        pre: function(scope, elem, attrs, ctrl){
 
-      $scope.start = function(){
-        $scope.stop();
-        $scope.interval = $interval(function(){
-        $scope.clock = Date.now();
+        },
+        post: function(scope,elem,attrs,ctrl){
 
-      },1);}
-      $scope.slow = function(){
-        $scope.stop();
-        $scope.interval = $interval(function(){
-        $scope.clock = Date.now();
-      },250);}
+        }
+      }
+    },
+    controller: ['$scope', function($scope){
+
+    }]
+  };
+})
+.directive("about",function(){
+  return{
+    restrict: 'E',
+    replace: false,
+    templateUrl: 'about.html',
+    compile: function(tElem,tAttrs){
+      return {
+        pre: function(scope, elem, attrs, ctrl){
+
+        },
+        post: function(scope,elem,attrs,ctrl){
+
+        }
+      }
+    },
+    controller: ['$scope', function($scope){
 
     }]
   };
