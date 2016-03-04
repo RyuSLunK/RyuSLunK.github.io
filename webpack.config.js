@@ -7,7 +7,8 @@ module.exports = {
   entry: "./js/require.js",
   output: {
     path: __dirname,
-    filename: "scripts.min.js"
+    filename: "scripts.min.js",
+	publicPath: "/"
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
