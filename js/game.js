@@ -3,7 +3,7 @@ angular.module('page')
   return{
     restrict: 'E',
     replace: false,
-    templateUrl: 'grow-game.html',
+    templateUrl: 'game.html',
     compile: function(tElem,tAttrs){
       return {
         pre: function(scope, elem, attrs, ctrl){
