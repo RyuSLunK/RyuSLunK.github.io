@@ -3,6 +3,8 @@
   <head>
     <title>Code Ninja's Lair</title>
     <script src="scripts.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
   </head>
   <body ng-app="page">
     <h1>Scott Lackey</h1>
@@ -23,7 +25,7 @@
           <home></home>
         </div>
         <div class="animate-switch" ng-switch-when="sketchpad">
-          <sketchpad></sketchpad>
+          <sketchpad canvas canvas-id="sketchpad"></sketchpad>
         </div>
         <div class="animate-switch" ng-switch-when="sandbox">
           <sandbox></sandbox>

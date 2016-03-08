@@ -1,0 +1,28 @@
+easel{
+  width: 100%;
+    height: 30em;
+    display: block;
+    border: 2px solid blue;
+}
+art-studio > ul > li{
+  padding: 1em 2em;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid blue;
+  color: white;
+  background-color: blue;
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+art-studio > ul > li > .glyphicon-remove{
+  margin-left: 5px;
+}
+art-studio > ul > li:hover{
+  background-color: grey;
+  cursor: pointer;
+}
+art-studio .glyphicon.glyphicon-remove:hover{
+  color: red;
+}
+art-studio .glyphicon.glyphicon-plus:hover{color:cyan;}
