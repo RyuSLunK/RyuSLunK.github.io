@@ -1,4 +1,4 @@
-var app = angular.module('page',[])
+var app = angular.module('page',['ui.slider','colorpicker.module'])
 .directive("holder",function(){
   return{
     restrict: 'E',
@@ -62,6 +62,25 @@ var app = angular.module('page',[])
     controller: ['$scope', function($scope){
 
     }]
+  };
+})
+.directive('satisfiedObjective', function(){
+  return {
+    restrict: 'A',
+    replace: 'true',
+    compile: function(tElem, tAttrs){
+      //compile before rendering the goodies
+      return {
+        pre: function(scope, elem, attrs, ctrl){
+
+        },
+        post: function(scope, elem, attrs, ctrl){
+          //generally attach your stuff here
+          elem.css("color","green");
+          elem.append("<span class='glyphicon glyphicon-ok'></span>");
+        }
+      };
+    }
   };
 })
 .directive("about",function(){

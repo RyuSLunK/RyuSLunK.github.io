@@ -1,5 +1,6 @@
 require('./angular.min.js');
-require('./jquery.min.js');
+require('./slider.js');
+require('./bootstrap-colorpicker-module.min.js');
 //require('./bootstrap.min.js');
 require('./main.js');
 require('./game.js');

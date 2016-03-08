@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/RyuSLunK/ryuslunk.github.io/issues"
   },
-  "homepage": "https://github.com/RyuSLunK/ryuslunk.github.io#readme"
+  "homepage": "https://github.com/RyuSLunK/ryuslunk.github.io#readme",
+  "dependencies": {
+    "angular-bootstrap-colorpicker": "^3.0.24",
+    "jquery": "^2.2.1",
+    "jquery-ui": "^1.10.5"
+  }
 }

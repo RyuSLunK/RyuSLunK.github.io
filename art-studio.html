@@ -1,12 +1,18 @@
 <ul class="nav nav-tabs">
-  <li ng-class="'active': (current_easel == item.id)" ng-click="changeTo(item.id)" ng-repeat="item in easels">{{item.canvas.id}}<span ng-click="removeEasel(item.id)" class="glyphicon glyphicon-remove"</span></li>
+  <li ng-click="changeTo(item.id)" ng-repeat="item in easels">{{item.canvas.id}}<span ng-click="removeEasel(item.id)" class="glyphicon glyphicon-remove"</span></li>
   <li ng-click="addEasel()" class="active"><span class="glyphicon glyphicon-plus"></span></li>
 </ul>
 <div id="workspace">
 
   <div ng-show="current_easel == item.id" ng-repeat="item in easels">
     <easel>
+      <div ui-slider="slider.options" min="0" max="200" ng-model="brushsize"></div>
+      <label>Stroke Color:</label>
+      <input colorpicker="rgba" type="text" ng-model="strokecolor" />
+      <label>Fill Color:</label>
+      <input colorpicker="rgba" type="text" ng-model="fillcolor" />
       <select ng-model="brushsize" ng-options="itemz.settings.brush.stroke.size as itemz.name for itemz in tools"></select>
+      <select ng-model="color" ng-options="itemz.settings.color.name as itemz.name for itemz in tools"></select>
       <canvas></canvas>
     </easel>
   </div>

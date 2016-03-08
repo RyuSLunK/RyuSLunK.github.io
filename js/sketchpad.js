@@ -123,23 +123,35 @@ angular.module('page')
       }
     },
     controller: ['$scope', function($scope){
-      $scope.$on('brushSizeChanged',function(event, data){
-        console.log("brush size change heard");
-        $scope.$broadcast('changeBrushSize',data);
+      $scope.slider = {};
 
-        $scope.brushsize = 3;
-        $scope.$watch('brushsize',function(newValue,oldValue){
-          $scope.$broadcast('updateContext',{key: "lineWidth",value: newValue});
-        });
-        $scope.tools = [
-          {name: "Little Brush", settings: {
-            brush: {stroke: {size: 1}}        }},
-            {name: "Medium Brush", settings: {
-              brush: {stroke: {size: 3}}        }},
-              {name: "Big Brush", settings: {
-                brush: {stroke: {size: 5}}        }}
-        ];
+      $scope.slider = {
+        options: {
+          start: function(event, ui) {console.log("slider start");},
+          stop: function(event, ui) {console.log("slider stop");}
+        }
+      };
+
+      $scope.tools = [
+        {name: "Little Brush", settings: {
+          brush: {stroke: {size: 1}}        }},
+          {name: "Medium Brush", settings: {
+            brush: {stroke: {size: 3}}        }},
+            {name: "Big Brush", settings: {
+              brush: {stroke: {size: 5}}        }}
+      ];
+      $scope.propKeys = ['lineWidth','strokeStyle','fillStyle'];
+      $scope.$watchGroup(['brushsize','strokecolor','fillcolor'],function(newValues,oldValues,scope){
+        var sendData = [];
+        for(var i=0;i<newValues.length;i++){
+          sendData.push({key: $scope.propKeys[i],value: newValues[i]});
+        }
+        console.log(sendData);
+        $scope.$broadcast('updateContext',sendData);
+        console.log("broadcasting");
       });
+    window.easelScope = $scope;
+
     }]
   };
 })
@@ -174,7 +186,7 @@ angular.module('page')
 
           elem.bind('touchstart',function(event){
             console.log("TOUCH STARTED");
-            scope.context.strokeStyle = 'red';
+
             scope.context.beginPath();
             scope.context.moveTo(scope.touch.x, scope.touch.y);
           //  console.log(event);
@@ -190,7 +202,7 @@ angular.module('page')
             scope.mouse.y = event.pageY - this.offsetTop;
           });
           elem.bind('mousedown', function(event){
-            scope.context.strokeStyle = '#00CC99';
+
             scope.context.beginPath();
             scope.context.moveTo(scope.mouse.x, scope.mouse.y);
             elem.bind('mousemove', onMousePaint);
@@ -221,8 +233,11 @@ angular.module('page')
         console.log("brush size changed");
       });
       $scope.$on('updateContext',function(event, data){
+        console.log("heard broadcast");
+        console.log($scope);
         data.forEach(function(item){
-          $scope.context[item.name] = item.value;
+          $scope.context[item.key] = item.value;
+          console.log($scope.context[item.key]);
         });
       });
     }]
