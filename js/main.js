@@ -37,7 +37,7 @@ var app = angular.module('page',['ui.slider','colorpicker.module'])
     },
     controller: ['$scope', function($scope){
       $scope.tab = 'home';
-      $scope.tabList = ["home","about","game","clock","sketchpad","sandbox"];
+      $scope.tabList = ["home","about","game","clock","sketchpad","sandbox","fullcanvas"];
       $scope.changeTab = function(tabName){
         $scope.tab = tabName;
       };

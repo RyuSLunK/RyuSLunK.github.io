@@ -7,3 +7,4 @@ require('./game.js');
 require('./sketchpad.js');
 require('./sandbox.js');
 require('./clock.js');
+require('./fullcanvas.js');
